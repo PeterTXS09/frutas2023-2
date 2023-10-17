@@ -27,12 +27,20 @@ def predict():
     try:
         img_data = request.form.get('myImage').replace("data:image/png;base64,","")
         img_binary = base64.b64decode(img_data)
-        image = cv2.imdecode(np.frombuffer(img_binary, np.uint8), cv2.IMREAD_COLOR)
-        img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        img_resized = cv2.resize(img_gray, (28, 28))
-        img_array = img_resized.reshape(1, 28, 28, 1)
-        
-        salida = model.predict(img_array)[0]
+        # image = cv2.imdecode(np.frombuffer(img_binary, np.uint8), cv2.IMREAD_COLOR)
+        # img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # img_resized = cv2.resize(img_gray, (28, 28))
+        # img_array = img_resized.reshape(1, 28, 28, 1)
+        imagen = io.imread(img_binary)
+        imagen = imagen[:, :, 3]
+        size = (28, 28)
+        image = imagen / 255.0
+        im = resize(image, size)
+        im = im[:, :, np.newaxis]
+        im = im.reshape(1, *im.shape)
+
+        salida = model.predict(im)[0]
+        # salida = model.predict(img_array)[0]
         print(salida)
 
         etiquetas = {0: "Manzana", 1: "Pera", 2: "Platano"}
