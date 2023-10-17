@@ -26,7 +26,10 @@ def predict_page():
 def predict():
     try:
         img_data = request.form.get('myImage').replace("data:image/png;base64,","")
-        img_binary = base64.b64decode(img_data)
+        with tempfile.NamedTemporaryFile(delete=False, mode="w+b", suffix='.png', dir=str('prediccion')) as fh:
+            fh.write(base64.b64decode(img_data))
+            tmp_file_path = fh.name
+        img_binary = base64.b64decode(tmp_file_path)
         # image = cv2.imdecode(np.frombuffer(img_binary, np.uint8), cv2.IMREAD_COLOR)
         # img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # img_resized = cv2.resize(img_gray, (28, 28))
