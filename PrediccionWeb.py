@@ -10,6 +10,7 @@ import cv2
 
 model = load_model('modelo_entrenado.h5')
 app = Flask(__name__, template_folder="templates/")
+app.secret_key = "super secret key"
 
 @app.route("/")
 def main():
