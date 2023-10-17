@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prediccion</title>
+    <link rel="stylesheet" href="../static/css/predict.css">
+</head>
+<body>
+
+<div class="contenedor">
+    <div>
+        <h1>Fruta dibujada</h1>
+        <img src="data:image/png;base64,{{ img_data }}" alt="fruta">
+    </div>
+    <ul>
+        {% for num in nums %}
+            <li>{{ num }}% {{ frutas[loop.index0] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Ir a la página principal</a>
+</div>
+
+</body>
+</html>

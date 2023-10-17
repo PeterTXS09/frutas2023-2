@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prediccion</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body onload="InitThis();">
+    <script src="../static/js/config.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <div class="contenedor">
+        <div class="centrar">
+            <h1 id="mensaje">Dibujando...</h1>
+            <canvas id="myCanvas" width="350" height="350" style="border:2px solid black"></canvas>
+
+            <button style="width: min-content; font-size: 1.5rem; margin: 1rem" onclick="javascript:clearArea();return false;">Borrar</button>
+            <form method="post" action="predict" onsubmit="javascript:prepareImg();"  enctype="multipart/form-data">
+                <input id="numero" name="numero" type="hidden" value="">
+                <input id="myImage" name="myImage" type="hidden" value="">
+                <input id="bt_upload" style="font-size: 1.5rem" type="submit" value="Predecir">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

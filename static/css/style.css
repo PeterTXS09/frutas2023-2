@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+.centrar{
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
