@@ -17,22 +17,36 @@ def main():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
+        print("1!")
         img_data = request.form.get('myImage').replace("data:image/png;base64,", "")
         with tempfile.NamedTemporaryFile(delete=False, mode="w+b", suffix='.png', dir=str('prediccion')) as fh:
             fh.write(base64.b64decode(img_data))
             tmp_file_path = fh.name
+        print("2!")
         imagen = io.imread(tmp_file_path)
+        print("3!")
         imagen = imagen[:, :, 3]
+        print("4!")
         size = (28, 28)
+        print("5!")
         image = imagen / 255.0
+        print("6!")
         im = resize(image, size)
+        print("7!")
         im = im[:, :, np.newaxis]
+        print("8!")
         im = im.reshape(1, *im.shape)
+        print("9!")
         salida = model.predict(im)[0]
+        print("10!")
         os.remove(tmp_file_path)
+        print("11!")
         nums = salida*100
+        print("12!")
         numeros_formateados = [f'{numero:.2f}' for numero in nums]
+        print("13!")
         cadena_formateada = ', '.join(numeros_formateados)
+        print("14!")
         return redirect(url_for('show_predictions', nums=cadena_formateada, img_data=img_data))
     except:
         print("Error occurred")
