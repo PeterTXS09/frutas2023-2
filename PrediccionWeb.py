@@ -32,7 +32,8 @@ def predict():
         img_resized = cv2.resize(img_gray, (28, 28))
         img_array = img_resized.reshape(1, 28, 28, 1)
         
-        salida = model.predict(img_array)[0]
+        salida = model.predict(img_array)
+        print(salida)
 
         etiquetas = {0: "Manzana", 1: "Pera", 2: "Platano"}
 
