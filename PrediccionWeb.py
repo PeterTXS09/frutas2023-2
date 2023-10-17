@@ -18,31 +18,18 @@ def main():
 def predict():
     try:
         print("1!")
-        img_data = request.form.get('myImage').replace("data:image/png;base64,", "")
-        with tempfile.NamedTemporaryFile(delete=False, mode="w+b", suffix='.png', dir=str('prediccion')) as fh:
-            fh.write(base64.b64decode(img_data))
-            tmp_file_path = fh.name
-        print("2!")
-        imagen = io.imread(tmp_file_path)
-        print("3!")
-        imagen = imagen[:, :, 3]
-        print("4!")
-        size = (28, 28)
-        print("5!")
-        image = imagen / 255.0
-        print("6!")
-        im = resize(image, size)
-        print("7!")
-        im = im[:, :, np.newaxis]
-        print("8!")
-        im = im.reshape(1, *im.shape)
-        print("9!")
-        salida = model.predict(im)[0]
-        print("10!")
-        os.remove(tmp_file_path)
-        print("11!")
+        img_data = request.form.get('myImage').replace("data:image/png;base64,","")
+        img_binary = base64.b64decode(img_data)
+        image = cv2.imdecode(np.frombuffer(img_binary, np.uint8), cv2.IMREAD_COLOR)
+        img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        img_resized = cv2.resize(img_gray, (28, 28))
+        img_array = img_resized.reshape(1, 28, 28, 1)
+        
+        salida = model.predict(img_array)[0]
+        print(salida)
+        
         nums = salida*100
-        print("12!")
+        print(nums)
         numeros_formateados = [f'{numero:.2f}' for numero in nums]
         print("13!")
         cadena_formateada = ', '.join(numeros_formateados)
