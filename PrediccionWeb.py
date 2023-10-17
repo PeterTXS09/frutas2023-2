@@ -35,8 +35,8 @@ def predict():
         cadena_formateada = ', '.join(numeros_formateados)
         print("14!")
         return redirect(url_for('show_predictions', nums=cadena_formateada, img_data=img_data))
-    except:
-        print("Error occurred")
+    except Exception as e:
+        print("Error occurred: ", e)
 
     return redirect("/", code=302)
 
