@@ -43,7 +43,7 @@ tensorboard-data-server==0.7.1
 tensorflow==2.13.1
 tensorflow-estimator==2.13.0
 termcolor==2.3.0
-tifffile==2023.9.26
+tifffile==2023.7.10
 typing_extensions==4.5.0
 urllib3==2.0.6
 Werkzeug==3.0.0
