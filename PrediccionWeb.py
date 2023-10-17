@@ -16,6 +16,12 @@ app.secret_key = "super secret key"
 def main():
     return render_template("index.html")
 
+
+@app.route('/predict')
+def predict_page():
+    return render_template('predict.html')
+    
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -35,10 +41,9 @@ def predict():
         if valor in etiquetas:
             kind = etiquetas[valor]
             print(f"Kind: {kind}")
-            flash(f"Prediccion: {kind}")
         else:
             print("El valor predicho no tiene una etiqueta asociada.")
-            flash("El valor predicho no tiene una etiqueta asociada.")
+        return render_template('predict.html',value=kind)
         
     except Exception as e:
         print("Error occurred: ", e)
