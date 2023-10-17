@@ -6,6 +6,7 @@ import base64
 from skimage.transform import resize
 import numpy as np
 from tensorflow.keras.models import load_model
+import cv2
 
 model = load_model('modelo_entrenado.h5')
 app = Flask(__name__, template_folder="templates/")
